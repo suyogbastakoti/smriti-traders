@@ -6,6 +6,7 @@ function Contact(){
     phone:"",
     message:"",
   });
+  const [status, setStatus] = useState("");
 
   const handleChange = (e)=>{
     setFormData({
@@ -27,12 +28,16 @@ function Contact(){
       });
 
       const data = await res.json();
-
+      
+      //alert logic
       if(res.ok){
+        setStatus("Message sent successfully");
         alert(data.message);
         setFormData({name:"", phone: "", message: ""});
       }else{
+
         alert(data.message || "Something went wrong");
+        setStatus(data.message || "Something went wrong");
       }
     } catch(error){
       console.error(error);
@@ -80,6 +85,13 @@ function Contact(){
             Send Message
           </button>
       </form>
+
+      {status && (
+        <div className="mt-6 p-4 rounded-lg bg-green-100 text-center">
+          {status}
+        </div>
+      )}
+
     </main>  
   );
 }
