@@ -21,11 +21,11 @@ function About() {
       {/* Why Choose Us */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
-        <div className="p-6 border rounded-xl">
+        <div className="p-6">
           <img
             src={dealer}
             alt="dealer picture"
-            className="h-64 w-64 mx-auto mb-5"
+            className="h-64 w-64 mx-auto mb-5 rounded-2xl"
           />
           <h3 className="text-xl font-semibold mb-2">
             Authorized Dealer
@@ -35,11 +35,11 @@ function About() {
           </p>
         </div>
 
-        <div className="p-6 border rounded-xl">
+        <div className="p-6">
           <img
             src={expert}
             alt="expert picture"
-            className="h-64 w-64 mx-auto mb-5"
+            className="h-64 w-64 mx-auto mb-5 rounded-2xl"
           />
           <h3 className="text-xl font-semibold mb-2">
             Expert Guidance
@@ -49,11 +49,11 @@ function About() {
           </p>
         </div>
 
-        <div className="p-6 border rounded-xl">
+        <div className="p-6">
           <img
             src={customer}
             alt="customer picture"
-            className="h-64 w-64 mx-auto mb-5"
+            className="h-64 w-64 mx-auto mb-5 rounded-2xl"
           />
           <h3 className="text-xl font-semibold mb-2">
             Customer Focused
