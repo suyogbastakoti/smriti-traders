@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Berger from "../assets/Berger.png";
+import stlogo from "../assets/stlogo.png";
 
 function Contact(){
 
@@ -74,7 +75,7 @@ function Contact(){
   };
 
   // -------------------------
-  // Auto-hide status message after 3 seconds
+  // Auto-hide status message after 1 seconds
   // -------------------------
   useEffect(()=>{
     if(status){
@@ -93,7 +94,7 @@ function Contact(){
       {/* -------------------------
           Contact Form
       ------------------------- */}
-      <form onSubmit={handleSubmit} className="bg-gray-100 p-8 rounded-2xl shadow space-y-6">
+      <form onSubmit={handleSubmit} className="bg-fuchsia-600 p-8 rounded-2xl shadow space-y-6">
 
           {/* Name input */}
           <input type="text" 
@@ -136,7 +137,9 @@ function Contact(){
           </button>
 
           <div className="flex justify-center items-center">
-            <img src={Berger} className="h-64 w-64"/>
+
+            <img src={stlogo} className="h-60 w-64 rounded-2xl"/>
+            <img src={Berger} className="h-60 w-64 rounded-2xl ml-5"/>
           </div>
 
       </form>
@@ -146,7 +149,7 @@ function Contact(){
       ------------------------- */}
       {status && (
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-        <div className={`bg-white p-28 rounded-lg shadow-lg border ${
+        <div className={`bg-green-300 text-white p-28 rounded-lg shadow-lg border ${
           status.includes("successfully") ? "border-green-500 text-green-600" : "border-red-500 text-red-600"
         }`}>
           {status}
