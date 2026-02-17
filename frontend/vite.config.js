@@ -7,4 +7,13 @@ export default defineConfig({
     react(),        // <-- this is required for JSX
     tailwindcss(),  // <-- your tailwind plugin
   ],
+  server: {
+    host: true
+  },
+  preview: {
+    host: true,
+    allowedHosts: 'all'
+  }
 })
+
+
