@@ -54,13 +54,11 @@ function Contact(){
       //   body: JSON.stringify(formData),       // send the data
       // });
 
-      const res = await fetch("https://smriti-traders.onrender.com/api/contact",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch("https://smriti-traders-production.up.railway.app/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
 
       const data = await res.json(); // parse response from backend
 
