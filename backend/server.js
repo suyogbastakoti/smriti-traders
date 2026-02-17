@@ -19,11 +19,6 @@ const contactRoutes = require("./routes/contactRoutes");
 app.use("/api/contact", contactRoutes);
 
 
-//test route
-app.get("/", (req, res) => {
-  res.send("Smriti Traders Backend Running");
-});
-
 const PORT = process.env.PORT || 5000;
 
 //Start listening for requests.
