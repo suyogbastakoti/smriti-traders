@@ -46,12 +46,20 @@ function Contact(){
 
     try{
       // Send form data to backend API
-      const res = await fetch("http://localhost:5000/api/contact",{
+      // const res = await fetch("http://localhost:5000/api/contact",{
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json", // tell server it's JSON
+      //   },
+      //   body: JSON.stringify(formData),       // send the data
+      // });
+
+      const res = await fetch("https://smriti-traders.onrender.com/api/contact",{
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // tell server it's JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),       // send the data
+        body: JSON.stringify(formData),
       });
 
       const data = await res.json(); // parse response from backend
