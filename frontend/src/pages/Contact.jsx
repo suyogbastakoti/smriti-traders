@@ -29,7 +29,7 @@ function Contact() {
     try {
       // Save to MongoDB via backend
       const res = await fetch(
-        "https://smriti-traders-production.up.railway.app/api/contact",
+        "https://smriti-traders-backend.onrender.com/api/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
