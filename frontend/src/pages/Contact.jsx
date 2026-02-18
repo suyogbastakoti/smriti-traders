@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
-import Berger from "../assets/Berger.png";
 import stlogo from "../assets/stlogo.png";
+import Berger from "../assets/Berger.png";
 
 function Contact() {
-
+  // Loading spinner state
   const [loading, setLoading] = useState(false);
 
+  // Form data state
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     message: "",
   });
 
+  // Status message (success/failure)
   const [status, setStatus] = useState("");
 
+  // Update form inputs
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,12 +24,13 @@ function Contact() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Save to MongoDB via backend
+      // Save to backend
       const res = await fetch(
         "https://smriti-traders-backend.onrender.com/api/contact",
         {
@@ -43,49 +46,35 @@ function Contact() {
         throw new Error(data.message || "Database save failed");
       }
 
-      // Send Email via EmailJS
-      await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      {
-        name: formData.name,
-        phone: formData.phone,
-        message: formData.message,
-      },
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
-
-
-      setStatus("Message sent successfully");
+      // Success
+      setStatus("Message sent successfully!");
       setFormData({ name: "", phone: "", message: "" });
-
     } catch (error) {
       console.error(error);
-      setStatus("Something went wrong");
+      setStatus("Something went wrong. Try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Auto-hide status message
+  // Auto-hide status message after 2 seconds
   useEffect(() => {
     if (status) {
-      const timer = setTimeout(() => setStatus(""), 1500);
+      const timer = setTimeout(() => setStatus(""), 2000);
       return () => clearTimeout(timer);
     }
   }, [status]);
 
   return (
-    <main className="py-16 px-6 max-w-4xl mx-auto relative">
-      <h1 className="text-4xl font-bold text-center mb-10">
+    <main className="py-16 px-4 max-w-4xl mx-auto relative">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10">
         Contact Us
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-fuchsia-600 p-8 rounded-2xl shadow space-y-6"
+        className="bg-fuchsia-600 p-6 sm:p-8 rounded-2xl shadow space-y-4"
       >
-
         <input
           type="text"
           name="name"
@@ -112,7 +101,7 @@ function Contact() {
           value={formData.message}
           onChange={handleChange}
           required
-          className="w-full border p-3 rounded-lg h-32 bg-pink-200"
+          className="w-full border p-3 rounded-lg h-28 sm:h-32 bg-pink-200"
         />
 
         <button
@@ -125,20 +114,27 @@ function Contact() {
           {loading ? "Sending..." : "Send Message"}
         </button>
 
-        <div className="flex justify-center items-center">
-          <img src={stlogo} alt="stlogo" className="h-60 w-64 rounded-2xl" />
-          <img src={Berger} alt="berger" className="h-60 w-64 rounded-2xl ml-5" />
+        {/* Partner logos responsive */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+          <img
+            src={stlogo}
+            alt="stlogo"
+            className="w-48 sm:w-60 rounded-2xl"
+          />
+          <img
+            src={Berger}
+            alt="berger"
+            className="w-48 sm:w-60 rounded-2xl"
+          />
         </div>
-
       </form>
 
+      {/* Status message overlay at center */}
       {status && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div
-            className={`bg-green-300 p-20 rounded-lg shadow-lg border ${
-              status.includes("successfully")
-                ? "border-green-500 text-green-600"
-                : "border-red-500 text-red-600"
+            className={`p-6 sm:p-8 rounded-lg shadow-lg border text-center max-w-xs sm:max-w-sm w-11/12 pointer-events-auto ${
+              status.includes("success") ? "border-green-500 text-green-600 bg-green-100" : "border-red-500 text-red-600 bg-red-100"
             }`}
           >
             {status}

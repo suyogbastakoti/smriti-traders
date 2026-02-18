@@ -11,7 +11,7 @@ function About() {
       <section className="mb-12">
         
 
-        <div className="flex items-center justify-center gap-32">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-32">
 
             
             {/* left-section title & paragraph */}
